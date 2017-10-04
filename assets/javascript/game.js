@@ -1,7 +1,7 @@
 var myScript = function(runGame) {
 
 					
-					var wins=0; //number of wins, don't want to overwrite this later.
+			var wins=0; //number of wins, don't want to overwrite this later.
 	
 	var reStart = function() { //restart the game when it's over
 
@@ -27,7 +27,7 @@ var myScript = function(runGame) {
 				    
 		    var currentWord = wordsArray[Math.floor(Math.random() * wordsArray.length)];// get a word from my array 
 			var letters = "abcdefghijklmnopqrstuvwxyz";									//used to check if it's a valid letter
-			var usedLetters = [];														//well, the used letters
+			var usedLetters = [];														//the used letters
 		    var guesses = 7; 															//how many wrong guesses to start
 		    var wordString = currentWord.toString();									//put the current word in string format
 		    var matches = 0;															//count for the number of matched letters
@@ -50,7 +50,7 @@ var myScript = function(runGame) {
 			        };
 
 			        //write some stuff to the doc, make sure it's clean
-			        htmlWord.innerHTML = "Your animal is: <br>  " + dashArray.join(" ");
+			        htmlWord.innerHTML = "Your animal is: <br>  " + dashArray.join(" "); //leave a space between dashes
 	        		htmlSelect.innerHTML = "Pick some letters ";
     		    	htmlOver.innerHTML = " ";
 
@@ -59,7 +59,7 @@ var myScript = function(runGame) {
   	var pickedLetter = document.onkeyup = function(gameKey) {
 
 	        htmlGuesses.innerHTML = "You have " + guesses + " wrong guesses left.";		//show how many guesses you have.  
-	        htmlSelect.innerHTML = "";								//general stupid instructions
+	        htmlSelect.innerHTML = "";													//general stupid instructions
 	        htmlStart.innerHTML = "";													//take the press any ... off
 	        var key = gameKey.key; 														//write the key pressed to variable key
 	        var checkLetter = usedLetters.toString();									//used letter array to string for search
@@ -96,7 +96,7 @@ var myScript = function(runGame) {
                 			(checkLetter.search(new RegExp(key)) <= -1)) {  				//and it's not already been used
                         dashArray[i] = key;													//change the _ in the dash to that key
                         htmlWord.innerHTML = "Your animal is: <br> " + dashArray.join(" "); //redisplay the array
-                        matches++;															//add one to matches for later
+            matches++;															//add one to matches for later
             	        };
             	};
         }; checkIfCorrect();
@@ -122,14 +122,14 @@ var myScript = function(runGame) {
         		}
         	};
 
-        	if (guesses == 0) {																	//if guesses = 0 (loser)
-        		htmlGuesses.innerHTML = " ";													//take off the number of guesses
-        		htmlOver.innerHTML = "Game Over - The answer was " + currentWord;				//show the answer, cause your a LOSER!
-        		htmlSelect.innerHTML = "Wait a few seconds for another game";					//loser message on screen        		
-        		htmlWins.innerHTML = "Wins: " + wins;											//show wins, probably 0 cause your a LOSER!
-        		htmlUsed.innerHTML =  ""; 														//no need to show the used letter board.
-        		if ((matches == wordString.length) || (guesses == 0)) {							//if either condition is true, 
-        			endIt();																	//execute endit
+        	if (guesses == 0) {															//if guesses = 0 (loser)
+        		htmlGuesses.innerHTML = " ";											//take off the number of guesses
+        		htmlOver.innerHTML = "Game Over - The answer was " + currentWord;		//show the answer
+        		htmlSelect.innerHTML = "Wait a few seconds for another game";			//loser message on screen        		
+        		htmlWins.innerHTML = "Wins: " + wins;									//show wins
+        		htmlUsed.innerHTML =  ""; 												//no need to show the used letter board.
+        		if ((matches == wordString.length) || (guesses == 0)) {					//if either condition is true, 
+        			endIt();															//execute endIt
         		}
         	};
         		//interesting aside about the finishIt function.  I had to use both evals with an || "or" operand to get out.  
@@ -137,7 +137,7 @@ var myScript = function(runGame) {
         }; finishIt();
 	}; //this is the end of my reStart function.  I don't call it here.
  	
- 	//when edit it is called above, sets a timeout so you can see the stuff for three seconds, the starts a NEW game!  
+ 	//when endIt is called above, sets a timeout so you can see the stuff for five seconds, then starts a NEW game!  
  	var endIt = function(){
 		 		setTimeout(function() {
 		        	reStart();
