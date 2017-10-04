@@ -1,0 +1,25 @@
+ 
+  body {
+    color: white;
+    font-family: 'Chicle', cursive;
+  }
+
+   
+  .myTitle {
+    text-align: center;
+    background-color: #29ab87;
+  }
+
+  .error {
+    color: red;
+  }
+
+  .wait {
+    color: blue;
+  }
+
+  .myimage {
+    padding-bottom: 30px;
+  }
+
+
