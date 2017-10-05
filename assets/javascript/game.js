@@ -33,7 +33,12 @@ var myScript = function(runGame) {
 		    var matches = 0;															//count for the number of matched letters
 		    var dashArray = [];															//put the word in dashed array
 
-				    //this is all stuff to write in the HTML doc
+		    //for every letter in my selected word, add a dash to dash array
+		    for (var i = 0; i < currentWord.length; i++) {
+				            dashArray.push("_");
+	        };
+
+				    //this is all stuff I will use to write in the HTML doc
 				    var htmlStart = document.getElementById("startIt");
 				    var htmlGuesses = document.getElementById("tries");
 				    var htmlWord = document.getElementById("word");
@@ -44,15 +49,10 @@ var myScript = function(runGame) {
 				    var htmlError = document.getElementById("errorMessage");
 
 
-				    //for every letter, add a dash to dash array
-				    for (var i = 0; i < currentWord.length; i++) {
-				            dashArray.push("_");
-			        };
-
-			        //write some stuff to the doc, make sure it's clean
-			        htmlWord.innerHTML = "Your animal is: <br>  " + dashArray.join(" "); //leave a space between dashes
-	        		htmlSelect.innerHTML = "Pick some letters ";
-    		    	htmlOver.innerHTML = " ";
+	        //write some stuff to the doc, make sure it's clean
+	        htmlWord.innerHTML = "Your animal is: <br>  " + dashArray.join(" "); //leave a space between dashes
+       		htmlSelect.innerHTML = "Pick some letters ";
+	    	htmlOver.innerHTML = " ";
 
 
     //this is the letter picking, checking, etc. function
@@ -96,7 +96,7 @@ var myScript = function(runGame) {
                 			(checkLetter.search(new RegExp(key)) <= -1)) {  				//and it's not already been used
                         dashArray[i] = key;													//change the _ in the dash to that key
                         htmlWord.innerHTML = "Your animal is: <br> " + dashArray.join(" "); //redisplay the array
-            matches++;															//add one to matches for later
+            			matches++;															//add one to matches for later
             	        };
             	};
         }; checkIfCorrect();
@@ -109,7 +109,7 @@ var myScript = function(runGame) {
 
     };// end of pickedLetter function
 
-    //function to end the game, start another one after three seconds
+    //function to end the game, start another one after five seconds
     var finishIt = function() {
         		if (matches == wordString.length) { 								   //if matches = wordlength (winner)
         		htmlGuesses.innerHTML = " ";										   //take the number of guesses left off screen
