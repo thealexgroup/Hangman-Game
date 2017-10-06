@@ -1,7 +1,7 @@
 var myScript = function(runGame) {
 
-					
 			var wins=0; //number of wins, don't want to overwrite this later.
+			var losses=0; //crap, add losses
 	
 	var reStart = function() { //restart the game when it's over
 
@@ -46,6 +46,7 @@ var myScript = function(runGame) {
 				    var htmlUsed = document.getElementById("used");
 				    var htmlOver =  document.getElementById("gameOver");
 				    var htmlWins =  document.getElementById("wins");
+				    var htmlLosses =  document.getElementById("losses");
 				    var htmlError = document.getElementById("errorMessage");
 
 
@@ -57,6 +58,7 @@ var myScript = function(runGame) {
 
     //this is the letter picking, checking, etc. function
   	var pickedLetter = document.onkeyup = function(gameKey) {
+  		console.log(gameKey);
 
 	        htmlGuesses.innerHTML = "You have " + guesses + " wrong guesses left.";		//show how many guesses you have.  
 	        htmlSelect.innerHTML = "";													//general stupid instructions
@@ -116,6 +118,7 @@ var myScript = function(runGame) {
         		wins ++;															   //update wins, and DON'T overwrite that count!
         		htmlSelect.innerHTML = "You won! Wait a few seconds for another game"; //show a happy message
         		htmlWins.innerHTML = "Wins: " + wins;								   //show the number of wins so far
+        		htmlLosses.innerHTML = "Losses: " + losses;							   //show the number of wins so far
         		htmlUsed.innerHTML =  "";											   //take off the used letters
         		if ((matches == wordString.length) || (guesses == 0)) {				   //if either condition is true, 
         			endIt();														   //execute endit
@@ -124,9 +127,11 @@ var myScript = function(runGame) {
 
         	if (guesses == 0) {															//if guesses = 0 (loser)
         		htmlGuesses.innerHTML = " ";											//take off the number of guesses
+        		losses++;																//add to losses
         		htmlOver.innerHTML = "Game Over - The answer was " + currentWord;		//show the answer
         		htmlSelect.innerHTML = "Wait a few seconds for another game";			//loser message on screen        		
         		htmlWins.innerHTML = "Wins: " + wins;									//show wins
+        		htmlLosses.innerHTML = "Losses: " + losses;								//show losses
         		htmlUsed.innerHTML =  ""; 												//no need to show the used letter board.
         		if ((matches == wordString.length) || (guesses == 0)) {					//if either condition is true, 
         			endIt();															//execute endIt
