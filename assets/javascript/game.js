@@ -2,6 +2,7 @@ var myScript = function(runGame) {
 
 			var wins=0; //number of wins, don't want to overwrite this later.
 			var losses=0; //crap, add losses
+
 	
 	var reStart = function() { //restart the game when it's over
 
@@ -106,13 +107,16 @@ var myScript = function(runGame) {
         		//every time you go through the key press, check if matches equals the length of your word for a win or
         		//check if out of guesses.  If either is true, execute function finishIt
         		if ((matches == wordString.length) || (guesses == 0)) {
-        			finishIt();
-        		}
+						document.onkeyup = function(gameKey) { //had to add this otherwise you could keep picking letters, etc.
+							return false;
+						};
+					}; finishIt();
 
     };// end of pickedLetter function
 
     //function to end the game, start another one after five seconds
     var finishIt = function() {
+
         		if (matches == wordString.length) { 								   //if matches = wordlength (winner)
         		htmlGuesses.innerHTML = " ";										   //take the number of guesses left off screen
         		wins ++;															   //update wins, and DON'T overwrite that count!
